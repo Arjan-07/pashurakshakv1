@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>PashuRakshak — Livestock Early Warning & Surveillance</title>
+<link rel="stylesheet" href="/styles.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+</head>
+<body>
+
+<div class="app" id="app">
+
+  <header>
+    <div class="brand">
+      <div class="logo">🐄</div>
+      <div><h1>PashuRakshak</h1><span>Livestock Early Warning &amp; Surveillance</span></div>
+    </div>
+    <div class="actions">
+      <select id="langSelect">
+        <option>English</option>
+        <option>हिन्दी</option>
+        <option>मराठी</option>
+      </select>
+      <span id="onlineStatus" class="online"><i data-lucide="wifi"></i>ONLINE</span>
+    </div>
+  </header>
+
+  <nav>
+    <b>Overview</b>
+    <span>Health Reports</span>
+    <span>GIS Surveillance</span>
+    <span>Investigations</span>
+    <span>Laboratory</span>
+    <span>Prevention</span>
+  </nav>
+
+  <main>
+    <section class="hero">
+      <div>
+        <p class="eyebrow">PUBLIC HEALTH SURVEILLANCE</p>
+        <h2>Detect early. Investigate faster. Protect livestock.</h2>
+        <p>One connected workflow from farmer reports to veterinary action — without presenting risk indicators as diagnoses.</p>
+      </div>
+      <div class="heroBtns">
+        <button class="primary" id="newReportBtn"><i data-lucide="plus"></i> New Health Report</button>
+        <button class="demo" id="simulateBtn"><i data-lucide="play"></i> Run Outbreak Simulation</button>
+      </div>
+    </section>
+
+    <div id="alertBanner"></div>
+
+    <div class="cards" id="cardsContainer"></div>
+
+    <div class="grid">
+      <section class="panel mapPanel">
+        <div class="panelHead">
+          <div><h3>GIS Surveillance</h3><p>Live reports and potential health clusters</p></div>
+          <span class="legend"><i></i>Potential Cluster</span>
+        </div>
+        <div id="map" class="map"></div>
+      </section>
+
+      <section class="panel">
+        <div class="panelHead">
+          <div><h3>Risk Engine</h3><p>Transparent, configurable indicator</p></div>
+          <i data-lucide="activity"></i>
+        </div>
+        <div class="risk">
+          <div class="ring" id="riskRingValue">18<small>/100</small></div>
+          <div><b id="riskLabel">Normal</b><p>Current surveillance risk</p></div>
+        </div>
+        <ul class="reasons" id="reasonsList"></ul>
+        <div class="workflow">
+          <div>Farmer report</div><div>→ AI structuring</div><div>→ Risk + cluster</div>
+          <div>→ Vet alert</div><div>→ Investigation</div><div>→ Lab</div><div>→ Advisory / Resolution</div>
+        </div>
+      </section>
+    </div>
+
+    <section class="panel">
+      <div class="panelHead">
+        <div><h3>Recent Health Reports</h3><p>Structured surveillance records</p></div>
+        <button class="small" id="addReportBtn2">Add report</button>
+      </div>
+      <table>
+        <thead>
+          <tr><th>ID</th><th>Village</th><th>Species</th><th>Symptoms</th><th>Affected</th><th>Severity</th></tr>
+        </thead>
+        <tbody id="reportsTableBody"></tbody>
+      </table>
+    </section>
+
+    <section class="modules">
+      <div><i data-lucide="clipboard-check"></i> <b>Investigations</b><span id="activeInvestigationsSpan">0 active</span></div>
+      <div><i data-lucide="flask-conical"></i> <b>Laboratory</b><span id="pendingLabSpan">0 pending tests</span></div>
+      <div><i data-lucide="map-pin"></i> <b>Advisories</b><span>General prevention guidance</span></div>
+    </section>
+  </main>
+
+  <div id="formModalContainer"></div>
+
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+<script src="/app.js"></script>
+</body>
+</html>
