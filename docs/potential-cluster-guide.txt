@@ -1,0 +1,109 @@
+PASHURAKSHAK — POTENTIAL CLUSTER GUIDE
+=======================================
+
+Purpose
+-------
+A Potential Cluster is an early-warning signal. It does not diagnose a disease.
+It helps veterinary teams notice when several recent animal-health reports are
+close to one another and have enough combined risk to deserve field review.
+
+How it is created
+------------------
+1. A farmer submits a health report with an animal, symptoms, affected-animal
+   count and village/area.
+2. The system records the report location.
+3. The system checks recent reports from the last 48 hours.
+4. If at least 2 recent reports are geographically close (about 0.15 degrees)
+   and the combined surveillance score reaches the cluster threshold, a
+   Potential Cluster is created or updated.
+5. The Risk Zones screen groups signals into:
+      GREEN  0–30   Routine monitoring
+      YELLOW 31–60   Veterinary review
+      RED    61–100  Priority field action
+
+Simple example
+--------------
+Farmer A reports fever and reduced appetite in a cattle animal in Village X.
+Farmer B reports similar signs in another animal in the same nearby area.
+The reports are recent and geographically close. Their combined signal can
+create a Potential Cluster.
+
+What the veterinarian should do
+--------------------------------
+1. Open Dashboard.
+2. Open Risk zones.
+3. Check the Green / Yellow / Red cards and the village-level map.
+4. Open the Potential Cluster card and review:
+   - number of reports
+   - affected animals
+   - nearby villages
+   - risk score
+   - current field-assessment status
+5. If field verification is required, click Assign assessment.
+6. Choose the field worker.
+7. Add practical instructions, for example:
+   "Visit the affected villages, verify symptoms, check vaccination records,
+    and collect samples if indicated by the veterinary protocol."
+8. After assignment, open Investigations to track the field workflow.
+9. Collect a sample when required. The investigation moves into laboratory
+   testing.
+10. In Laboratory, the veterinarian can record the laboratory result.
+11. When field action is complete, the field worker can mark the investigation
+    resolved.
+
+How to make a cluster appear while testing
+-------------------------------------------
+Use two or more health reports that:
+- are submitted within the recent 48-hour window;
+- use the same or nearby village/area;
+- contain meaningful symptoms;
+- affect one or more animals.
+
+For a quick test, submit two reports from the same area using symptoms such as
+fever, lethargy or reduced appetite. The application uses the entered report
+location, so keep the village/area consistent while testing.
+
+Why a cluster may not appear
+-----------------------------
+- Only one recent report exists.
+- Reports are too far apart.
+- Reports are older than the recent surveillance window.
+- The combined surveillance score is below the cluster threshold.
+- The browser/app was not refreshed after a report was submitted.
+
+If this happens
+---------------
+1. Submit another nearby report.
+2. Open Risk zones again.
+3. Use Refresh map.
+4. Check the Potential Cluster count.
+5. If still absent, confirm that the report was successfully submitted in My
+   Reports / Reports & review.
+
+How to read the map
+-------------------
+- The OpenStreetMap basemap shows real geographic locations.
+- Report/cluster circles are coloured by surveillance band.
+- Village names entered in reports are geocoded through OpenStreetMap's
+  Nominatim service when available.
+- If a village boundary geometry is returned, it is drawn on the map.
+- Map colours are semantic risk colours only; they are not the site's brand
+  palette.
+
+Important safety note
+---------------------
+Potential Cluster and Risk Zone are surveillance aids. They are not a disease
+confirmation, diagnosis, or treatment recommendation. Veterinary professionals
+should follow authorised diagnostic, sampling, biosecurity and reporting SOPs.
+
+Data / service notes
+--------------------
+- The livestock catalogue is exposed by the local free endpoint:
+      GET /api/livestock/catalog
+  It contains India-relevant livestock species and common breeds and works
+  without a paid database service.
+- The disease/sample reference is exposed by:
+      GET /api/knowledge/diseases
+      GET /api/knowledge/samples
+- The map uses OpenStreetMap tiles and Nominatim geocoding. Respect the public
+  service usage policies and move to a hosted GIS/geocoder for high traffic.
